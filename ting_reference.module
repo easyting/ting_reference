@@ -23,7 +23,7 @@ function ting_reference_enable() {
  * preprocess ting_object
  */
 function ting_reference_preprocess_ting_object(&$variables) {
-  if( isset($variables['content']['ting_reference_reverse']) ) { 
+  if ( isset($variables['content']['ting_reference_reverse']) ) {
     $variables['content']['ting_reference_reverse']['#prefix'] =  '<a name="ting_reference"></a>';
   }
 }
@@ -77,7 +77,7 @@ function ting_reference_element_info() {
  * Implements hook_field_info().
  */
 function ting_reference_field_info() {
- 
+
   return array(
     'ting_reference' => array(
       'label' => t('Ting reference'),
@@ -162,7 +162,7 @@ function ting_reference_field_insert($entity_type, $entity, $field, $instance, $
   $entity_info = entity_get_info($entity_type);
   $entity_id = $entity->{$entity_info['entity keys']['id']};
   foreach ($items as $item) {
-    if (!empty($item['object'])){
+    if (!empty($item['object'])) {
       ting_reference_create_relation($entity_type, $entity_id, $item['object']->tid);
     }
   }
@@ -222,8 +222,8 @@ function ting_reference_field_delete($entity_type, $entity, $field, $instance, $
   }
 }
 
-function ting_reference_field_display_alter(&$display,$context)  {
- 
+function ting_reference_field_display_alter(&$display, $context) {
+
 }
 
 /**
@@ -322,7 +322,7 @@ function ting_reference_field_formatter_view($entity_type, $entity, $field, $ins
     case 'ting_reference_reverse_default':
       foreach ($items as $delta => $item) {
         $ids = array();
-	
+
         // Extract the IDs for the entites we need to load.
         foreach ($items as $rel) {
           $id = $rel['value']->endpoints[$langcode][0]['entity_id'];
@@ -413,7 +413,9 @@ function ting_reference_object_id_validate(&$element, &$form_state) {
   $identifier = trim(str_replace('%3A', ':', $element['#value']['identifier']));
 
   // Don't bother validating empty fields.
-  if (empty($identifier)) { return; }
+  if (empty($identifier)) {
+    return;
+  }
 
   // Load the object to validate it exists.
   // Loading it should make it available for use with ting_get_object().
@@ -433,7 +435,7 @@ function ting_reference_object_id_validate(&$element, &$form_state) {
 
 /* temporarily commented out due to deadline*/
 function ting_reference_anchor_info() {
-  return array('ting_reference'=>t('On this site'));
+  return array('ting_reference' => t('On this site'));
 }
 
 /**
@@ -462,7 +464,7 @@ function ting_reference_get_relations($entity_type, $entity) {
       ->execute();
 
     if ($result) {
-       return relation_load_multiple(array_keys($result['relation']));
+      return relation_load_multiple(array_keys($result['relation']));
     }
   }
 
