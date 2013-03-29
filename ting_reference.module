@@ -10,7 +10,6 @@
 function ting_reference_enable() {
   // Relations isn't properly exported/imported with beta1, so we do
   // it by hand for the moment being.
-  relation_init();
   foreach (ting_reference_relation_default_relation_types_tmp() as $relation_type) {
     if (!relation_type_load($relation_type->relation_type)) {
       relation_type_save($relation_type);
