@@ -22,8 +22,8 @@ function ting_reference_enable() {
  * preprocess ting_object
  */
 function ting_reference_preprocess_ting_object(&$variables) {
-  if ( isset($variables['content']['ting_reference_reverse']) ) {
-    $variables['content']['ting_reference_reverse']['#prefix'] =  '<a name="ting_reference"></a>';
+  if (isset($variables['content']['ting_reference_reverse'])) {
+    $variables['content']['ting_reference_reverse']['#prefix'] = '<a name="ting_reference"></a>';
   }
 }
 
@@ -67,7 +67,7 @@ function ting_reference_element_info() {
     'ting_reference_object_id' => array(
       '#input' => TRUE,
       '#process' => array('ting_reference_object_id_process'),
-      '#element_validate' => array('ting_reference_object_id_validate')
+      '#element_validate' => array('ting_reference_object_id_validate'),
     ),
   );
 }
@@ -351,7 +351,7 @@ function ting_reference_field_widget_info() {
       'label' => t('Ting reference (simple)'),
       'field types' => array('ting_reference'),
       'behaviors' => array(
-        'default value' => FIELD_BEHAVIOR_NONE
+        'default value' => FIELD_BEHAVIOR_NONE,
       ),
     ),
   );
