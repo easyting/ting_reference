@@ -330,7 +330,18 @@ function ting_reference_field_formatter_view($entity_type, $entity, $field, $ins
         // Load the ting objects found.
         $nodes = entity_load('node', $ids);
 
+        $approvable_types = array('ding_news', 'ding_event',);
+
         foreach ($nodes as $id => $node) {
+          // Check if the news/event node was approved.
+          if (in_array($node->type, $approvable_types)) {
+            $obj = new DashboardNode($node->nid);
+            if ($obj->editorial_status != DASHBOARD_NODE_APPROVED) {
+              // Not approved, do not show.
+              continue;
+            }
+          }
+
           $build = node_view($node, 'teaser');
           // Don't show links. Should be an option.
           unset($build['links']);
