@@ -184,9 +184,10 @@ function ting_reference_field_update($entity_type, $entity, $field, $instance, $
   foreach ($items as $item_key => $item) {
     if (!empty($item['object'])) {
       $found = FALSE;
-      foreach ($relations as $relation_key => $relation) {		  		
+      foreach ($relations as $relation_key => $relation) {
         if ($relation->endpoints['und'][1]['entity_id'] == $item['object']->tid) {
-          // If the position of the item is changed, delete old relation and reposition the rest of the items.
+          // If the position of the item is changed, delete old relation
+          // and reposition the rest of the items.
           if (($item_key != ($relation_key - $relations_first_key)) || $relation_reordered) {
             $relation_reordered = TRUE;
             relation_delete($relation_key);
