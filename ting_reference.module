@@ -5,19 +5,6 @@
  */
 
 include_once 'ting_reference.features.inc';
-/**
- * @file
- * Code for the ting_reference feature.
- */
-function ting_reference_enable() {
-  // Relations isn't properly exported/imported with beta1, so we do
-  // it by hand for the moment being.
-  foreach (ting_reference_relation_default_relation_types_tmp() as $relation_type) {
-    if (!relation_type_load($relation_type->relation_type)) {
-      relation_type_save($relation_type);
-    }
-  }
-}
 
 /**
  * preprocess ting_object
@@ -422,7 +409,7 @@ function ting_reference_object_id_validate(&$element, &$form_state) {
 }
 
 /* temporarily commented out due to deadline*/
-function ting_reference_ding_anchor_info() {
+function ting_reference_anchor_info() {
   return array('ting_reference' => t('On this site'));
 }
 
